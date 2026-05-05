@@ -57,7 +57,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 min-h-0 overflow-y-auto">
         {activeTab === 'serves' && <ServesCalculator />}
         {activeTab === 'total' && <TotalCarbsCalculator />}
         {activeTab === 'food' && <FoodCalculator />}
