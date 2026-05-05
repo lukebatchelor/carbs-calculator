@@ -10,7 +10,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'Carbs Tracker',
+        name: 'Carbs Calculator',
         short_name: 'Carbs',
         theme_color: '#16a34a',
         background_color: '#ffffff',

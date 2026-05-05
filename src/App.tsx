@@ -25,7 +25,7 @@ export default function App() {
         className="bg-bg border-b border-border px-5 py-4 flex items-center justify-between"
         style={{ paddingTop: 'max(env(safe-area-inset-top), 1rem)' }}
       >
-        <h1 className="text-xl font-bold text-text">Carbs Tracker</h1>
+        <h1 className="text-xl font-bold text-text">Carbs Calculator</h1>
         <button
           onClick={() => setShowSettings(true)}
           className="w-9 h-9 flex items-center justify-center rounded-full bg-surface text-muted"

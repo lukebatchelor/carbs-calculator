@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "carbs-tracker",
+      "name": "carbs-calculator",
       "dependencies": {
         "react": "^19.2.5",
         "react-dom": "^19.2.5",
