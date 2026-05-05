@@ -41,9 +41,9 @@ function FoodIcon() {
 }
 
 const tabs: { id: Tab; label: string; Icon: () => React.JSX.Element }[] = [
+  { id: 'food', label: 'Foods', Icon: FoodIcon },
   { id: 'serves', label: 'By Serves', Icon: ServesIcon },
   { id: 'total', label: 'Total Carbs', Icon: TargetIcon },
-  { id: 'food', label: 'Foods', Icon: FoodIcon },
 ]
 
 export function TabBar({ activeTab, onTabChange }: Props) {

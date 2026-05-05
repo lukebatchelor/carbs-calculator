@@ -25,7 +25,7 @@ function CogIcon() {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<Tab>('serves')
+  const [activeTab, setActiveTab] = useState<Tab>('food')
   const [showSettings, setShowSettings] = useState(false)
   const { hue, isDark, setHue, setIsDark } = useTheme()
   const { canInstall, install } = useInstallPrompt()

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useId } from 'react'
 import { useFoods, type Food } from '../hooks/useFoods'
 import { InputField } from './InputField'
 
@@ -20,6 +20,10 @@ function XIcon() {
 
 export function FoodCalculator() {
   const { foods, addFood, updateFood, deleteFood } = useFoods()
+
+  const foodInputId = useId()
+  const nameId = useId()
+  const editCarbsId = useId()
 
   const [query, setQuery] = useState('')
   const [isOpen, setIsOpen] = useState(false)
@@ -105,9 +109,10 @@ export function FoodCalculator() {
 
       {/* Typeahead */}
       <div className="relative mb-4">
-        <p className="text-xs font-semibold uppercase tracking-widest text-muted mb-2">Food</p>
-        <div className="flex items-center bg-surface border-2 border-border rounded-2xl px-5 py-3 gap-3 focus-within:border-primary transition-colors">
+        <label htmlFor={foodInputId} className="text-xs font-semibold uppercase tracking-widest text-muted mb-2 block">Food</label>
+        <div className="flex items-center bg-surface border-2 border-border rounded-2xl px-5 py-4 gap-3 focus-within:border-primary transition-colors">
           <input
+            id={foodInputId}
             type="text"
             value={query}
             onChange={e => { setQuery(e.target.value); setIsOpen(true) }}
@@ -120,7 +125,7 @@ export function FoodCalculator() {
               }, 150)
             }}
             placeholder="Search or add a food..."
-            className="flex-1 text-lg font-medium text-text bg-transparent outline-none min-w-0 placeholder:text-border"
+            className="flex-1 text-2xl font-bold leading-10 text-text bg-transparent outline-none min-w-0 placeholder:text-border"
           />
           {(query || showPanel) && (
             <button
@@ -165,8 +170,9 @@ export function FoodCalculator() {
           </p>
 
           <div className="mb-3">
-            <label className="text-xs text-muted block mb-1.5">Name</label>
+            <label htmlFor={nameId} className="text-xs text-muted block mb-1.5">Name</label>
             <input
+              id={nameId}
               type="text"
               value={editName}
               onChange={e => setEditName(e.target.value)}
@@ -175,9 +181,10 @@ export function FoodCalculator() {
           </div>
 
           <div className="mb-4">
-            <label className="text-xs text-muted block mb-1.5">Carbs per 100g</label>
+            <label htmlFor={editCarbsId} className="text-xs text-muted block mb-1.5">Carbs per 100g</label>
             <div className="flex items-center bg-bg border border-border rounded-xl px-4 py-2.5 gap-2 focus-within:border-primary transition-colors">
               <input
+                id={editCarbsId}
                 type="number"
                 inputMode="decimal"
                 value={editCarbs}

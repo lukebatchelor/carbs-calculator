@@ -1,3 +1,5 @@
+import { useId } from 'react'
+
 interface Props {
   label: string
   value: string
@@ -6,11 +8,13 @@ interface Props {
 }
 
 export function InputField({ label, value, onChange, unit }: Props) {
+  const id = useId()
   return (
     <div className="mb-4">
-      <p className="text-xs font-semibold uppercase tracking-widest text-muted mb-2">{label}</p>
+      <label htmlFor={id} className="text-xs font-semibold uppercase tracking-widest text-muted mb-2 block">{label}</label>
       <div className="flex items-center bg-surface border-2 border-border rounded-2xl px-5 py-4 gap-3 focus-within:border-primary transition-colors">
         <input
+          id={id}
           type="number"
           inputMode="decimal"
           value={value}
