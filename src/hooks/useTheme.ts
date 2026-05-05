@@ -2,21 +2,9 @@ import { useEffect, useState } from 'react'
 
 const DEFAULT_HUE = 142
 
-export function accentVars(hue: number, isDark: boolean) {
-  const l  = isDark ? 55 : 38
-  const ld = isDark ? 45 : 30
-  return {
-    '--color-primary':        `hsl(${hue}, 65%, ${l}%)`,
-    '--color-primary-dark':   `hsl(${hue}, 70%, ${ld}%)`,
-    '--color-primary-subtle': isDark ? `hsl(${hue}, 30%, 16%)` : `hsl(${hue}, 60%, 95%)`,
-    '--color-result':         isDark ? `hsl(${hue}, 60%, 80%)` : `hsl(${hue}, 75%, 20%)`,
-  }
-}
-
 function applyTheme(hue: number, isDark: boolean) {
   const root = document.documentElement
-  const vars = accentVars(hue, isDark)
-  for (const [k, v] of Object.entries(vars)) root.style.setProperty(k, v)
+  root.style.setProperty('--hue', String(hue))
   root.classList.toggle('dark', isDark)
 }
 

@@ -1,5 +1,3 @@
-import { accentVars } from '../hooks/useTheme'
-
 interface Props {
   hue: number
   isDark: boolean
@@ -28,7 +26,7 @@ function Toggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean
 }
 
 export function SettingsPage({ hue, isDark, onHueChange, onDarkChange, onClose }: Props) {
-  const previewColor = accentVars(hue, isDark)['--color-primary']
+  const previewColor = `hsl(${hue}, 65%, ${isDark ? 55 : 38}%)`
 
   return (
     <div

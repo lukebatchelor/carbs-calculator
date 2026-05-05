@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Default accent colours (overridden at runtime by JS) ── */
+  /* Static values so Tailwind generates the utility classes.
+     Runtime values are controlled by the unlayered rules below. */
   --color-primary:        #16a34a;
   --color-primary-dark:   #15803d;
   --color-primary-subtle: #f0fdf4;
   --color-result:         #14532d;
 
-  /* ── Neutral colours (light mode defaults) ── */
   --color-bg:      #ffffff;
   --color-surface: #f8fafc;
   --color-border:  #e2e8f0;
@@ -15,13 +15,34 @@
   --color-muted:   #94a3b8;
 }
 
-/* ── Dark mode neutrals ── toggle via html.dark class */
+/*
+  Unlayered rules beat @layer theme regardless of specificity.
+  --hue is the single variable JS needs to change (0–360).
+  All accent colours derive from it here in CSS.
+*/
+html {
+  --hue: 142;
+  --color-primary:        hsl(var(--hue), 65%, 38%);
+  --color-primary-dark:   hsl(var(--hue), 70%, 30%);
+  --color-primary-subtle: hsl(var(--hue), 60%, 95%);
+  --color-result:         hsl(var(--hue), 75%, 20%);
+  --color-bg:             hsl(var(--hue), 20%, 100%);
+  --color-surface:        hsl(var(--hue), 20%, 97%);
+  --color-border:         hsl(var(--hue), 15%, 88%);
+  --color-text:           hsl(var(--hue), 15%, 10%);
+  --color-muted:          hsl(var(--hue), 10%, 55%);
+}
+
 html.dark {
-  --color-bg:      #0f172a;
-  --color-surface: #1e293b;
-  --color-border:  #334155;
-  --color-text:    #f1f5f9;
-  --color-muted:   #64748b;
+  --color-primary:        hsl(var(--hue), 65%, 55%);
+  --color-primary-dark:   hsl(var(--hue), 70%, 45%);
+  --color-primary-subtle: hsl(var(--hue), 30%, 16%);
+  --color-result:         hsl(var(--hue), 60%, 80%);
+  --color-bg:             hsl(var(--hue), 20%, 8%);
+  --color-surface:        hsl(var(--hue), 15%, 13%);
+  --color-border:         hsl(var(--hue), 15%, 22%);
+  --color-text:           hsl(var(--hue), 10%, 95%);
+  --color-muted:          hsl(var(--hue), 10%, 55%);
 }
 
 * {

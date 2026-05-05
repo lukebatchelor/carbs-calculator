@@ -10,19 +10,15 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Carbs" />
     <title>Carbs Tracker</title>
-    <!-- Anti-flicker: apply persisted theme before first paint -->
+    <!-- Apply persisted theme before first paint to avoid flash -->
     <script>
       (function () {
-        var hue = parseInt(localStorage.getItem('theme-hue') || '142', 10)
+        var hue = localStorage.getItem('theme-hue') || '142'
         var sd = localStorage.getItem('theme-dark')
         var dark = sd !== null ? sd === 'true' : window.matchMedia('(prefers-color-scheme: dark)').matches
         var r = document.documentElement
+        r.style.setProperty('--hue', hue)
         if (dark) r.classList.add('dark')
-        var l = dark ? 55 : 38, ld = dark ? 45 : 30
-        r.style.setProperty('--color-primary',        'hsl(' + hue + ',65%,' + l  + '%)')
-        r.style.setProperty('--color-primary-dark',   'hsl(' + hue + ',70%,' + ld + '%)')
-        r.style.setProperty('--color-primary-subtle', dark ? 'hsl(' + hue + ',30%,16%)' : 'hsl(' + hue + ',60%,95%)')
-        r.style.setProperty('--color-result',         dark ? 'hsl(' + hue + ',60%,80%)' : 'hsl(' + hue + ',75%,20%)')
       })()
     </script>
   </head>
