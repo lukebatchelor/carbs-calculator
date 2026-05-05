@@ -1,4 +1,4 @@
-export type Tab = 'serves' | 'total'
+export type Tab = 'serves' | 'total' | 'food'
 
 interface Props {
   activeTab: Tab
@@ -25,9 +25,25 @@ function TargetIcon() {
   )
 }
 
+function FoodIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      {/* Bowl body */}
+      <path strokeLinecap="round" d="M4.5 9.5 C4 17 8.5 19.5 12 19.5 C15.5 19.5 20 17 19.5 9.5" />
+      {/* Rim */}
+      <ellipse cx="12" cy="9.5" rx="7.5" ry="2.5" />
+      {/* Pasta wave 1 */}
+      <path strokeLinecap="round" d="M8 12.5 Q9.5 11 11 12.5 Q12.5 14 14 12.5 Q15.5 11 16 12.5" />
+      {/* Pasta wave 2 */}
+      <path strokeLinecap="round" d="M9 15.5 Q10.5 14 12 15.5 Q13.5 17 15 15.5" />
+    </svg>
+  )
+}
+
 const tabs: { id: Tab; label: string; Icon: () => React.JSX.Element }[] = [
   { id: 'serves', label: 'By Serves', Icon: ServesIcon },
   { id: 'total', label: 'Total Carbs', Icon: TargetIcon },
+  { id: 'food', label: 'Foods', Icon: FoodIcon },
 ]
 
 export function TabBar({ activeTab, onTabChange }: Props) {

@@ -1,9 +1,19 @@
 import { useState } from 'react'
 import { ServesCalculator } from './components/ServesCalculator'
 import { TotalCarbsCalculator } from './components/TotalCarbsCalculator'
+import { FoodCalculator } from './components/FoodCalculator'
 import { TabBar, type Tab } from './components/TabBar'
 import { SettingsPage } from './components/SettingsPage'
 import { useTheme } from './hooks/useTheme'
+import { useInstallPrompt } from './hooks/useInstallPrompt'
+
+function InstallIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0-4-4m4 4 4-4M4 20h16" />
+    </svg>
+  )
+}
 
 function CogIcon() {
   return (
@@ -18,6 +28,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('serves')
   const [showSettings, setShowSettings] = useState(false)
   const { hue, isDark, setHue, setIsDark } = useTheme()
+  const { canInstall, install } = useInstallPrompt()
 
   return (
     <div className="flex flex-col h-dvh bg-bg text-text">
@@ -26,17 +37,30 @@ export default function App() {
         style={{ paddingTop: 'max(env(safe-area-inset-top), 1rem)' }}
       >
         <h1 className="text-xl font-bold text-text">Carbs Calculator</h1>
-        <button
-          onClick={() => setShowSettings(true)}
-          className="w-9 h-9 flex items-center justify-center rounded-full bg-surface text-muted"
-          aria-label="Open settings"
-        >
-          <CogIcon />
-        </button>
+        <div className="flex items-center gap-2">
+          {canInstall && (
+            <button
+              onClick={install}
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-surface text-muted"
+              aria-label="Install app"
+            >
+              <InstallIcon />
+            </button>
+          )}
+          <button
+            onClick={() => setShowSettings(true)}
+            className="w-9 h-9 flex items-center justify-center rounded-full bg-surface text-muted"
+            aria-label="Open settings"
+          >
+            <CogIcon />
+          </button>
+        </div>
       </header>
 
       <main className="flex-1 overflow-y-auto">
-        {activeTab === 'serves' ? <ServesCalculator /> : <TotalCarbsCalculator />}
+        {activeTab === 'serves' && <ServesCalculator />}
+        {activeTab === 'total' && <TotalCarbsCalculator />}
+        {activeTab === 'food' && <FoodCalculator />}
       </main>
 
       <TabBar activeTab={activeTab} onTabChange={setActiveTab} />
