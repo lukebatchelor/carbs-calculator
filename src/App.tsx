@@ -32,7 +32,7 @@ export default function App() {
   const { canInstall, install } = useInstallPrompt()
 
   return (
-    <div className="flex flex-col h-dvh bg-bg text-text">
+    <div className="flex flex-col h-full bg-bg text-text">
       <header
         className="bg-bg border-b border-border px-5 py-4 flex items-center justify-between"
         style={{ paddingTop: 'max(env(safe-area-inset-top), 1rem)' }}
