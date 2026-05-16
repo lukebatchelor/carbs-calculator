@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ServesCalculator } from './components/ServesCalculator'
 import { TotalCarbsCalculator } from './components/TotalCarbsCalculator'
 import { FoodCalculator } from './components/FoodCalculator'
+import { DiaryTab } from './components/DiaryTab'
 import { TabBar, type Tab } from './components/TabBar'
 import { SettingsPage } from './components/SettingsPage'
 import { useTheme } from './hooks/useTheme'
@@ -25,7 +26,7 @@ function CogIcon() {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<Tab>('food')
+  const [activeTab, setActiveTab] = useState<Tab>('diary')
   const [showSettings, setShowSettings] = useState(false)
   const { hue, isDark, setHue, setIsDark } = useTheme()
   const { canInstall, install } = useInstallPrompt()
@@ -58,6 +59,7 @@ export default function App() {
       </header>
 
       <main className="flex-1 min-h-0 overflow-y-auto">
+        {activeTab === 'diary' && <DiaryTab />}
         {activeTab === 'serves' && <ServesCalculator />}
         {activeTab === 'total' && <TotalCarbsCalculator />}
         {activeTab === 'food' && <FoodCalculator />}

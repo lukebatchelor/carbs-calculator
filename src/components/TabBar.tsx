@@ -1,4 +1,4 @@
-export type Tab = 'serves' | 'total' | 'food'
+export type Tab = 'diary' | 'serves' | 'total' | 'food'
 
 interface Props {
   activeTab: Tab
@@ -25,6 +25,16 @@ function TargetIcon() {
   )
 }
 
+function DiaryIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <rect x="4" y="3" width="16" height="18" rx="2" />
+      <path strokeLinecap="round" d="M8 8h8M8 12h8M8 16h5" />
+      <path strokeLinecap="round" strokeWidth="2" d="M4 7h2M4 12h2M4 17h2" />
+    </svg>
+  )
+}
+
 function FoodIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
@@ -41,6 +51,7 @@ function FoodIcon() {
 }
 
 const tabs: { id: Tab; label: string; Icon: () => React.JSX.Element }[] = [
+  { id: 'diary', label: 'Diary', Icon: DiaryIcon },
   { id: 'food', label: 'Foods', Icon: FoodIcon },
   { id: 'serves', label: 'By Serves', Icon: ServesIcon },
   { id: 'total', label: 'Total Carbs', Icon: TargetIcon },
